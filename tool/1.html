@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>开发工具</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 菜鸟, 个人, 作品" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+<body id="top">
+
+<!-- Header -->
+<header id="header">
+    <a href="#" class="image avatar"><img src="../img/photo.jpg"/></a>
+    <h1>我是 <strong>梁旭</strong> , 一个前端菜鸟<br />
+        走在学习的路上，把学到的知识写出来<br />
+        <strong><a href="http://www.myliangxu.cn"><i class="fa fa-home"></i> 个人空间</a></strong></h1>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <h3>开发工具</h3>
+
+    <!-- One -->
+    <section id="one">
+        <header class="major">
+            <h2>Gulp压缩前端CS,JS,图片文件</h2>
+        </header>
+
+        <div id="cnblogs_post_body"><p><strong>Gulp</strong>基于Node.js的前端构建工具，Gulp有许多插件（<a href="http://gulpjs.com/plugins/" target="_blank">这里是插件</a>），使用Gulp可以实现前端代码的编译（sass、less）、压缩、图片的压缩等，当然主要是前端工程化，不过我目前只是需要压缩文件就，至于Grunt，相比于Gulp太慢了，<a href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank">Gulp API</a>；</p>
+            <p>假如有个本地目录，如下图：</p>
+            <p><img src="img/1-1.png" alt="" /></p>
+            <p><strong>环境：</strong></p>
+            <p>　　Windows，安装 <a href="https://nodejs.org/en/">Node</a></p>
+            <p><strong>安装Gulp:</strong></p>
+            <p>　　1，全局安装，执行：npm install gulp -g</p>
+            <p>　　2，本地目录安装，cmd 到你的项目根目录，执行： npm install gulp --save-dev</p>
+            <p><strong>安装插件：</strong></p>
+            <ul>
+                <li>自动添加css前缀（<a href="http://github.com/Metrime/gulp-autoprefixer">gulp-autoprefixer</a>）</li>
+                <li>压缩css（<a href="http://github.com/jonathanepollack/gulp-minify-css">gulp-minify-css</a>）</li>
+                <li>js代码校验（<a href="http://github.com/spenceralger/gulp-jshint">gulp-jshint</a>）</li>
+                <li>合并js文件（<a href="http://github.com/wearefractal/gulp-concat">gulp-concat</a>）</li>
+                <li>压缩js代码（<a href="http://github.com/terinjokes/gulp-uglify">gulp-uglify</a>）</li>
+                <li>压缩图片（<a href="http://github.com/sindresorhus/gulp-imagemin">gulp-imagemin</a>）</li>
+                <li>自动刷新页面（<a href="http://github.com/vohof/gulp-livereload">gulp-livereload</a>）</li>
+                <li>图片缓存，只有图片替换了才压缩（<a href="http://github.com/jgable/gulp-cache">gulp-cache</a>）</li>
+                <li>更改提醒（<a href="http://github.com/mikaelbr/gulp-notify">gulp-notify</a>）</li>
+                <li>清除文件（<a href="http://www.npmjs.org/package/del">del</a>）</li>
+            </ul>
+            <p>　　执行：npm install gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev</p>
+            <p><strong>加载插件：</strong></p>
+            <p>　　在根目录创建 gulpfile.js</p>
+            <div>
+<pre><code><span style="color: #008000;">//</span><span style="color: #008000;"> 引入 gulp及组件</span>
+<span style="color: #0000ff;">var</span> gulp = require('gulp'),
+    autoprefixer = require('gulp-autoprefixer'),
+    minifycss = require('gulp-minify-css'),        <span style="color: #008000;">//</span><span style="color: #008000;">压缩css</span>
+    jshint = require('gulp-jshint'),            <span style="color: #008000;">//</span><span style="color: #008000;">js代码校验</span>
+    uglify = require('gulp-uglify'),            <span style="color: #008000;">//</span><span style="color: #008000;">压缩JS</span>
+    imagemin = require('gulp-imagemin'),        <span style="color: #008000;">//</span><span style="color: #008000;">压缩图片</span>
+    rename = require('gulp-rename'),            <span style="color: #008000;">//</span><span style="color: #008000;">合并js文件</span>
+    concat = require('gulp-concat'),
+    notify = require('gulp-notify'),
+    cache = require('gulp-cache'),
+    livereload = require('gulp-livereload'),
+    del = require('del');</code></pre>
+            </div>
+            <p><strong>建立任务：</strong></p>
+            <p><strong>　　</strong></p>
+            <div>
+<pre><code><span style="color: #008000;">//</span><span style="color: #008000;"> Styles</span>
+gulp.task('styles', <span style="color: #0000ff;">function</span>() {
+  <span style="color: #0000ff;">return</span> gulp.src('src/styles/*.css')</span>
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(minifycss())
+        .pipe(gulp.dest('dist/styles'))
+        .pipe(notify({ message: 'Styles task complete' }));
+});
+
+// Scripts<br />gulp.task('scripts', function() {<br />&nbsp; return gulp.src('src/scripts/**/*.js')<br />&nbsp;&nbsp;&nbsp; .pipe(jshint('.jshintrc'))<br />&nbsp;&nbsp;&nbsp; .pipe(jshint.reporter('default'))<br />&nbsp;&nbsp;&nbsp; .pipe(concat('main.js'))<br />&nbsp;&nbsp;&nbsp; .pipe(rename({ suffix: '.min' }))<br />&nbsp;&nbsp;&nbsp; .pipe(uglify())<br />&nbsp;&nbsp;&nbsp; .pipe(gulp.dest('dist/scripts'))<br />&nbsp;&nbsp;&nbsp; .pipe(notify({ message: 'Scripts task complete' }));<br />});
+
+<span style="color: #008000;">//</span><span style="color: #008000;"> Images</span>
+gulp.task('images', <span style="color: #0000ff;">function</span>() {
+  <span style="color: #0000ff;">return</span> gulp.src('src/images/**/*')
+    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: <span style="color: #0000ff;">true</span>, interlaced: <span style="color: #0000ff;">true</span> })))
+    .pipe(gulp.dest('dist/images'))
+    .pipe(notify({ message: 'Images task complete' }));
+});<br /><br />// Clean  任务执行前，先清除之前生成的文件<br />gulp.task('clean', function(cb) {<br />&nbsp;&nbsp;&nbsp; del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)<br />});<br /><br />// Default task  设置默认任务<br />gulp.task('default', ['clean'], function() {<br />&nbsp;&nbsp;&nbsp; gulp.start('styles', 'scripts', 'images');<br />});<br /></span></code></pre>
+            </div>
+            <p>&nbsp;</p>
+            <h3><strong>监听文件:</strong></h3>
+            <p>&nbsp;</p>
+            <div>
+<pre><code><span style="color: #008000;">//</span><span style="color: #008000;"> Watch</span>
+gulp.task('watch', <span style="color: #0000ff;">function</span>() {
+  <span style="color: #008000;">//</span><span style="color: #008000;"> Watch .scss files</span>
+  gulp.watch('src/styles/**/*.css', ['styles']);
+  <span style="color: #008000;">//</span><span style="color: #008000;"> Watch .js files</span>
+  gulp.watch('src/scripts/**/*.js', ['scripts']);
+  <span style="color: #008000;">//</span><span style="color: #008000;"> Watch image files</span>
+  gulp.watch('src/images/**/*', ['images']);
+  <span style="color: #008000;">//</span><span style="color: #008000;"> Create LiveReload server</span>
+  livereload.listen();
+  <span style="color: #008000;">//</span><span style="color: #008000;"> Watch any files in dist/, reload on change</span>
+  gulp.watch(['dist/**']).on('change', livereload.changed);
+
+});</code></pre>
+            </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>然后在 cdm执行任务就可以了，例如：压缩css执行 [ gulp&nbsp;styles ]，等待执行完成，你就可以在dist目录下找到压缩好了的文件，如下图</p>
+            <p><img src="img/1-2.png" alt="" /></p>
+            <p>&nbsp;</p>
+            <p>看看压缩后和压缩前的大小： </p>
+            <p><img alt="Gulp压缩前端CS,JS,图片文件" src="img/1-3.png"/> </p>
+            <p>还是很给力的吧。 </p>
+            <p>windows 下删除 node_modules 文件夹会提示源路径太长无法删除什么的，找到个方法 </p>
+            <p>在gulpDemo 下新建个空文件夹，随便命名：r </p>
+            <p>然后cmd 进入gulpDemo，输入命令： <span>Robocopy /MIR r</span> node_modules </p>
+            <p>等待命令执行完，时间可能有点长，然后删除空文件夹即可。 </p>
+
+
+
+    </section>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+        <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+        <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+        <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>
