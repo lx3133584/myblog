@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Gulp压缩前端CS,JS,图片文件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Gulp压缩前端CS,JS,图片文件" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 菜鸟, 个人, 作品,Gulp,压缩,CS,JS,图片文件" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+<body id="top">
+
+<!-- Header -->
+<header id="header">
+    <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg"/></a>
+    <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br />
+        走在学习的路上，把学到的知识写出来<br />
+        <strong><a href=".."><i class="fa fa-home"></i> BOLG</a></strong></h1>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <h3><a href="index.html">开发工具</a></h3>
+
+    <!-- One -->
+    <section id="one">
+        <header class="major">
+            <h2>Gulp压缩前端CS,JS,图片文件</h2>
+        </header>
+
+        <div id="cnblogs_post_body"><p><strong>Gulp</strong>基于Node.js的前端构建工具，Gulp有许多插件（<a
+                href="http://gulpjs.com/plugins/" target="_blank">这里是插件</a>），使用Gulp可以实现前端代码的编译（sass、less）、压缩、图片的压缩等，当然主要是前端工程化，不过我目前只是需要压缩文件就，至于Grunt，相比于Gulp太慢了，<a
+                href="https://github.com/gulpjs/gulp/blob/master/docs/API.md" target="_blank">Gulp API</a>；</p>
+            <p>假如有个本地目录，如下图：</p>
+            <p><img src="img/2-1.png" alt=""/></p>
+            <p><strong>环境：</strong></p>
+            <p>　　Windows，安装 <a href="https://nodejs.org/en/">Node</a></p>
+            <p><strong>安装Gulp:</strong></p>
+            <p>　　1，全局安装，执行：npm install gulp -g</p>
+            <p>　　2，本地目录安装，cmd 到你的项目根目录，执行： npm install gulp --save-dev</p>
+            <p><strong>安装插件：</strong></p>
+            <ul>
+                <li>自动添加css前缀（<a href="http://github.com/Metrime/gulp-autoprefixer">gulp-autoprefixer</a>）</li>
+                <li>压缩css（<a href="http://github.com/jonathanepollack/gulp-minify-css">gulp-minify-css</a>）</li>
+                <li>js代码校验（<a href="http://github.com/spenceralger/gulp-jshint">gulp-jshint</a>）</li>
+                <li>合并js文件（<a href="http://github.com/wearefractal/gulp-concat">gulp-concat</a>）</li>
+                <li>压缩js代码（<a href="http://github.com/terinjokes/gulp-uglify">gulp-uglify</a>）</li>
+                <li>压缩图片（<a href="http://github.com/sindresorhus/gulp-imagemin">gulp-imagemin</a>）</li>
+                <li>自动刷新页面（<a href="http://github.com/vohof/gulp-livereload">gulp-livereload</a>）</li>
+                <li>图片缓存，只有图片替换了才压缩（<a href="http://github.com/jgable/gulp-cache">gulp-cache</a>）</li>
+                <li>更改提醒（<a href="http://github.com/mikaelbr/gulp-notify">gulp-notify</a>）</li>
+                <li>清除文件（<a href="http://www.npmjs.org/package/del">del</a>）</li>
+            </ul>
+            <p>　　执行：npm install gulp-autoprefixer gulp-minify-css gulp-jshint gulp-concat gulp-uglify gulp-imagemin
+                gulp-notify gulp-rename gulp-livereload gulp-cache del --save-dev</p>
+            <p><strong>加载插件：</strong></p>
+            <p>　　在根目录创建 gulpfile.js</p>
+            <div>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// 引入 gulp及组件</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">gulp</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">autoprefixer</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-autoprefixer&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">minifycss</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-minify-css&#39;</span><span style="color: #f8f8f2">),</span>        <span style="color: #75715e">//压缩css</span>
+    <span style="color: #a6e22e">jshint</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-jshint&#39;</span><span style="color: #f8f8f2">),</span>            <span style="color: #75715e">//js代码校验</span>
+    <span style="color: #a6e22e">uglify</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-uglify&#39;</span><span style="color: #f8f8f2">),</span>            <span style="color: #75715e">//压缩JS</span>
+    <span style="color: #a6e22e">imagemin</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-imagemin&#39;</span><span style="color: #f8f8f2">),</span>        <span style="color: #75715e">//压缩图片</span>
+    <span style="color: #a6e22e">rename</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-rename&#39;</span><span style="color: #f8f8f2">),</span>            <span style="color: #75715e">//合并js文件</span>
+    <span style="color: #a6e22e">concat</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-concat&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">notify</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-notify&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">cache</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-cache&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">livereload</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;gulp-livereload&#39;</span><span style="color: #f8f8f2">),</span>
+    <span style="color: #a6e22e">del</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">require</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;del&#39;</span><span style="color: #f8f8f2">);</span>
+</pre></div>
+            </div>
+            <p><strong>建立任务：</strong></p>
+            <p><strong>　　</strong></p>
+            <div>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// Styles</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;styles&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">src</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/styles/*.css&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">rename</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">suffix</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;.min&#39;</span> <span style="color: #f8f8f2">}))</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">minifycss</span><span style="color: #f8f8f2">())</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dest</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;dist/styles&#39;</span><span style="color: #f8f8f2">))</span>
+        <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">notify</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">message</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Styles task complete&#39;</span> <span style="color: #f8f8f2">}));</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Scripts</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;scripts&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">src</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/scripts/**/*.js&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">jshint</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.jshintrc&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">jshint</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">reporter</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">concat</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;main.js&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">rename</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">suffix</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;.min&#39;</span> <span style="color: #f8f8f2">}))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">uglify</span><span style="color: #f8f8f2">())</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dest</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;dist/scripts&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">notify</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">message</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Scripts task complete&#39;</span> <span style="color: #f8f8f2">}));</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Images</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;images&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">src</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/images/**/*&#39;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cache</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">imagemin</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">optimizationLevel</span><span style="color: #f92672">:</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">progressive</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">interlaced</span><span style="color: #f92672">:</span> <span style="color: #66d9ef">true</span> <span style="color: #f8f8f2">})))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">dest</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;dist/images&#39;</span><span style="color: #f8f8f2">))</span>
+    <span style="color: #f8f8f2">.</span><span style="color: #a6e22e">pipe</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">notify</span><span style="color: #f8f8f2">({</span> <span style="color: #a6e22e">message</span><span style="color: #f92672">:</span> <span style="color: #e6db74">&#39;Images task complete&#39;</span> <span style="color: #f8f8f2">}));</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Clean  任务执行前，先清除之前生成的文件</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;clean&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">cb</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">del</span><span style="color: #f8f8f2">([</span><span style="color: #e6db74">&#39;dist/assets/css&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;dist/assets/js&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;dist/assets/img&#39;</span><span style="color: #f8f8f2">],</span> <span style="color: #a6e22e">cb</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">});</span>
+
+<span style="color: #75715e">// Default task  设置默认任务</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;default&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;clean&#39;</span><span style="color: #f8f8f2">],</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">start</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;styles&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;scripts&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;images&#39;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+            </div>
+            <p>&nbsp;</p>
+            <h3><strong>监听文件:</strong></h3>
+            <p>&nbsp;</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">// Watch</span>
+<span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">task</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;watch&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #75715e">// Watch .scss files</span>
+  <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">watch</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/styles/**/*.css&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;styles&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #75715e">// Watch .js files</span>
+  <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">watch</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/scripts/**/*.js&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;scripts&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #75715e">// Watch image files</span>
+  <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">watch</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;src/images/**/*&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;images&#39;</span><span style="color: #f8f8f2">]);</span>
+  <span style="color: #75715e">// Create LiveReload server</span>
+  <span style="color: #a6e22e">livereload</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">listen</span><span style="color: #f8f8f2">();</span>
+  <span style="color: #75715e">// Watch any files in dist/, reload on change</span>
+  <span style="color: #a6e22e">gulp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">watch</span><span style="color: #f8f8f2">([</span><span style="color: #e6db74">&#39;dist/**&#39;</span><span style="color: #f8f8f2">]).</span><span style="color: #a6e22e">on</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;change&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">livereload</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">changed</span><span style="color: #f8f8f2">);</span>
+
+<span style="color: #f8f8f2">});</span>
+</pre></div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>然后在 cdm执行任务就可以了，例如：压缩css执行 [ gulp&nbsp;styles ]，等待执行完成，你就可以在dist目录下找到压缩好了的文件，如下图</p>
+            <p><img src="img/2-2.png" alt=""/></p>
+            <p>&nbsp;</p>
+            <p>看看压缩后和压缩前的大小： </p>
+            <p><img alt="Gulp压缩前端CS,JS,图片文件" src="img/2-3.png"/></p>
+            <p>还是很给力的吧。 </p>
+            <p>windows 下删除 node_modules 文件夹会提示源路径太长无法删除什么的，找到个方法 </p>
+            <p>在gulpDemo 下新建个空文件夹，随便命名</p>
+            <p>然后cmd 进入gulpDemo，输入命令： <span>Robocopy /MIR r</span> node_modules </p>
+            <p>等待命令执行完，时间可能有点长，然后删除空文件夹即可。 </p>
+
+
+    </section>
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+        <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+        <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+        <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>

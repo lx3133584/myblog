@@ -127,9 +127,10 @@ $size-header-pad:		4em;
 	}
 	
 	code {
-		background: $color-border-bg;
+		background: #272822;
 		border-radius: $size-border-radius;
 		border: solid 2px $color-border;
+		color:#fff;
 		font-family: $font-family-fixed;
 		font-size: 0.9em;
 		margin: 0 0.25em;
@@ -141,11 +142,11 @@ $size-header-pad:		4em;
 		font-family: $font-family-fixed;
 		font-size: 0.9em;
 		margin: 0 0 $size-element-margin 0;
+		padding: 1em 1.5em;
 
 		code {
 			display: block;
 			line-height: 1.75em;
-			padding: 1em 1.5em;
 			overflow-x: auto;
 		}
 	}
