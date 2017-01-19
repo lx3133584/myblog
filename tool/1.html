@@ -34,12 +34,9 @@
         <h3>简介：</h3>
         <p>gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。</p>
 
-<article><p>gulp是基于Nodejs的自动任务运行器， 她能自动化地完成
-    javascript/coffee/sass/less/html/image/css
-    等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单。通过本文，我们将学习如何使用Gulp来改变开发流程，从而使开发更加快速高效。</p>
+<article><p>gulp是基于Nodejs的自动任务运行器， 她能自动化地完成javascript/coffee/sass/less/html/image/css等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单。通过本文，我们将学习如何使用Gulp来改变开发流程，从而使开发更加快速高效。</p>
     <p style="margin-top: 10px;">gulp 和 grunt 非常类似，但相比于 grunt 的频繁 IO 操作，gulp 的流操作，能更快地更便捷地完成构建工作。</p>
-    <p style="margin: 20px 0; text-indent: 2em;">
-        本示例以gulp-less为例（将less编译成css的gulp插件）展示gulp的常规用法，只要我们学会使用一个gulp插件后，其他插件就差看看其帮助文档了。让我们一起来学习gulp吧！ ^_^</p>
+    <p style="margin: 20px 0;">本示例以gulp-less为例（将less编译成css的gulp插件）展示gulp的常规用法，只要我们学会使用一个gulp插件后，其他插件就差看看其帮助文档了。让我们一起来学习gulp吧！ ^_^</p>
     <p>gulp常用地址：</p>
     <p><a href="http://gulpjs.com" target="_blank">gulp官方网址</a></p>
     <p><a href="http://gulpjs.com/plugins" target="_blank">gulp插件地址</a></p>
@@ -109,12 +106,10 @@
     <p style="font-weight: 800;">
         PS：npm安装插件过程：从http://registry.npmjs.org下载对应的插件包（该网站服务器位于国外，所以经常下载缓慢或出现异常），解决办法往下看↓↓↓↓↓↓。</p>
     <h3 id="lesson4">4、选装cnpm</h3>
-    <p>4.1、说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。<span
-            style="color: #ff5d50;">32个<i class="iconfont" style="font-size: 15px; margin-left: 4px;"></i></span>！来自官网：<strong>“这是一个完整
+    <p>4.1、说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。来自官网：<strong>“这是一个完整
         npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”</strong>；</p>
     <p>4.2、官方网址：<a href="//npm.taobao.org/" target="_blank">http://npm.taobao.org</a>；</p>
-    <p>4.3、安装：命令提示符执行<strong class="cmd"><code>npm install cnpm -g
-        --registry=https://registry.npm.taobao.org</code></strong>； 注意：安装完后最好查看其版本号<strong class="cmd">cnpm -v</strong>或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；
+    <p>4.3、安装：命令提示符执行<strong class="cmd"><code>npm install cnpm -g --registry=https://registry.npm.taobao.org</code></strong>； 注意：安装完后最好查看其版本号<strong class="cmd">cnpm -v</strong>或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；
     </p>
     <p>注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）。</p>
     <h3 id="lesson5">5、全局安装gulp</h3>
