@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JS页面间传值</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Gulp详细安装教程" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 菜鸟, 个人, 作品,JS，页面间，传值" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+<body id="top">
+
+<!-- Header -->
+<header id="header">
+    <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg"/></a>
+    <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br />
+        走在学习的路上，把学到的知识写出来<br />
+        <strong><a href=".."><i class="fa fa-home"></i> BOLG</a></strong></h1>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <h3><a href=".">JavaScript</a></h3>
+
+    <!-- One -->
+    <section id="one">
+        <header class="major">
+            <h2>JS页面间传值</h2>
+        </header>
+
+        <h3>一：JavaScript静态页面值传递之URL篇</h3>
+        <p>能过URL进行传值，把要传递的信息接在URL上。</p>
+        <p>例子：</p>
+        <p>参数传出页面Post.htm—></p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span
+            style="color: #a6e22e">input</span> <span style="color: #a6e22e">type</span><span
+            style="color: #f92672">=</span><span style="color: #e6db74">&quot;text&quot;</span><span
+            style="color: #a6e22e">name</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;username&quot;</span><span
+            style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span
+                style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;text&quot;</span> <span
+                style="color: #a6e22e">name</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;sex&quot;</span><span
+                style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">input</span> <span
+                style="color: #a6e22e">type</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;button&quot;</span><span
+                style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span
+                style="color: #e6db74">&quot;Post&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">script</span> <span
+                style="color: #a6e22e">language</span><span style="color: #f92672">=</span><span
+                style="color: #e6db74">&quot;javascript&quot;</span> <span style="color: #f92672">&gt;</span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">Post</span><span
+                style="color: #f8f8f2">()</span>
+<span style="color: #f8f8f2">{</span>
+　　<span style="color: #75715e">//单个值 Read.htm?username=baobao;</span>
+　　<span style="color: #75715e">//多全值 Read.htm?username=baobao&amp;sex=male;</span>
+　　<span style="color: #a6e22e">url</span><span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Read.htm?username=&quot;</span><span
+                style="color: #f92672">+</span><span style="color: #a6e22e">escape</span><span
+                style="color: #f8f8f2">(document.</span><span style="color: #a6e22e">all</span><span
+                style="color: #f8f8f2">.</span><span style="color: #a6e22e">username</span><span
+                style="color: #f8f8f2">.</span><span style="color: #a6e22e">value</span><span
+                style="color: #f8f8f2">);</span>
+　　<span style="color: #a6e22e">url</span><span style="color: #f92672">+=</span> <span style="color: #e6db74">&quot;&amp;sex=&quot;</span> <span
+                style="color: #f92672">+</span> <span style="color: #a6e22e">escape</span><span
+                style="color: #f8f8f2">(document.</span><span style="color: #a6e22e">all</span><span
+                style="color: #f8f8f2">.</span><span style="color: #a6e22e">sex</span><span
+                style="color: #f8f8f2">.</span><span style="color: #a6e22e">value</span><span
+                style="color: #f8f8f2">);</span>
+　　<span style="color: #a6e22e">location</span><span style="color: #f8f8f2">.</span><span
+                style="color: #a6e22e">href</span><span style="color: #f92672">=</span><span style="color: #a6e22e">url</span><span
+                style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+            <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">/script</span><span style="color: #f92672">&gt;</span>
+
+</pre>
+    </div>
+        <p>参数接收页面Read.htm—></p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span
+                style="color: #a6e22e">script</span> <span style="color: #a6e22e">language</span><span
+                style="color: #f92672">=</span><span style="color: #e6db74">&quot;javascript&quot;</span> <span
+                style="color: #f92672">&gt;</span>
+<span style="color: #75715e">/*</span>
+<span style="color: #75715e">*--------------- Read.htm -----------------</span>
+<span style="color: #75715e">* Request[key]</span>
+<span style="color: #75715e">* 功能:实现ASP的取得URL字符串,Request(&quot;AAA&quot;)</span>
+<span style="color: #75715e">* 参数:key,字符串.</span>
+<span style="color: #75715e">* 实例:alert(Request[&quot;AAA&quot;])</span>
+<span style="color: #75715e">*--------------- Request.htm -----------------</span>
+<span style="color: #75715e">*/</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">url</span><span
+                    style="color: #f92672">=</span><span style="color: #a6e22e">location</span><span
+                    style="color: #f8f8f2">.</span><span style="color: #a6e22e">search</span><span
+                    style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Request</span> <span
+                    style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span
+                    style="color: #f8f8f2">Object();</span>
+<span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">url</span><span
+                    style="color: #f8f8f2">.</span><span style="color: #a6e22e">indexOf</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;?&quot;</span><span
+                    style="color: #f8f8f2">)</span><span style="color: #f92672">!=-</span><span
+                    style="color: #ae81ff">1</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+　　<span style="color: #a6e22e">varstr</span> <span style="color: #f92672">=</span> <span
+                    style="color: #a6e22e">url</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">substr</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #ae81ff">1</span><span
+                    style="color: #f8f8f2">)</span>　<span style="color: #75715e">//去掉?号</span>
+　　<span style="color: #a6e22e">strs</span><span style="color: #f92672">=</span> <span
+                    style="color: #a6e22e">str</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">split</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;&amp;&quot;</span><span
+                    style="color: #f8f8f2">);</span>
+　　<span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">vari</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span
+                    style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span style="color: #f92672">&lt;</span><span
+                    style="color: #a6e22e">strs</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span
+                    style="color: #f8f8f2">;</span><span style="color: #a6e22e">i</span><span
+                    style="color: #f92672">++</span><span style="color: #f8f8f2">)</span>
+　　<span style="color: #f8f8f2">{</span>
+　　 　 <span style="color: #a6e22e">Request</span><span style="color: #f8f8f2">[</span><span
+                    style="color: #a6e22e">strs</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span
+                    style="color: #f8f8f2">].</span><span style="color: #a6e22e">split</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;=&quot;</span><span
+                    style="color: #f8f8f2">)[</span><span style="color: #ae81ff">0</span><span
+                    style="color: #f8f8f2">]]</span><span style="color: #f92672">=</span><span style="color: #a6e22e">unescape</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #a6e22e">strs</span><span style="color: #f8f8f2">[</span> <span
+                    style="color: #a6e22e">i</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">split</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;=&quot;</span><span
+                    style="color: #f8f8f2">)[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]);</span>
+　　<span style="color: #f8f8f2">}</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">Request</span><span style="color: #f8f8f2">[</span><span
+                    style="color: #e6db74">&quot;username&quot;</span><span style="color: #f8f8f2">])</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">Request</span><span style="color: #f8f8f2">[</span><span
+                    style="color: #e6db74">&quot;sex&quot;</span><span style="color: #f8f8f2">])</span>
+ <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">/script</span><span style="color: #f92672">&gt;</span>
+<span style="color: #75715e">&lt;!--</span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">Request</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #a6e22e">strName</span><span
+                    style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">strHref</span> <span
+                    style="color: #f92672">=</span><span style="color: #e6db74">&quot;www.abc.com/index.htm?a=1&amp;b=1&amp;c=测试测试&quot;</span><span
+                    style="color: #f8f8f2">;</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">intPos</span> <span style="color: #f92672">=</span> <span
+                    style="color: #a6e22e">strHref</span><span style="color: #f8f8f2">.</span><span
+                    style="color: #a6e22e">indexOf</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;?&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">strRight</span> <span
+                    style="color: #f92672">=</span> <span style="color: #a6e22e">strHref</span><span
+                    style="color: #f8f8f2">.</span><span style="color: #a6e22e">substr</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #a6e22e">intPos</span> <span
+                    style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span
+                    style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">arrTmp</span> <span style="color: #f92672">=</span> <span
+                    style="color: #a6e22e">strRight</span><span style="color: #f8f8f2">.</span><span
+                    style="color: #a6e22e">split</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;&amp;&quot;</span><span style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #66d9ef">var</span> <span style="color: #a6e22e">i</span> <span
+                    style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span
+                    style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span
+                    style="color: #a6e22e">arrTmp</span><span style="color: #f8f8f2">.</span><span
+                    style="color: #a6e22e">length</span><span style="color: #f8f8f2">;</span> <span
+                    style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span
+                    style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">arrTemp</span> <span
+                    style="color: #f92672">=</span> <span style="color: #a6e22e">arrTmp</span><span
+                    style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span> <span
+                    style="color: #f8f8f2">].</span><span style="color: #a6e22e">split</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;=&quot;</span><span
+                    style="color: #f8f8f2">);</span>
+<span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">arrTemp</span><span style="color: #f8f8f2">[</span><span
+                    style="color: #ae81ff">0</span><span style="color: #f8f8f2">].</span><span style="color: #a6e22e">toUpperCase</span><span
+                    style="color: #f8f8f2">()</span> <span style="color: #f92672">==</span> <span
+                    style="color: #a6e22e">strName</span><span style="color: #f8f8f2">.</span><span
+                    style="color: #a6e22e">toUpperCase</span><span style="color: #f8f8f2">())</span><span
+                    style="color: #66d9ef">return</span> <span style="color: #a6e22e">arrTemp</span><span
+                    style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span
+                    style="color: #f8f8f2">];</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #66d9ef">return</span> <span style="color: #e6db74">&quot;&quot;</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">Request</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;a&quot;</span><span style="color: #f8f8f2">));</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">Request</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;b&quot;</span><span style="color: #f8f8f2">));</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">Request</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;c&quot;</span><span style="color: #f8f8f2">));</span>
+<span style="color: #75715e">//--&gt;</span>
+
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">script</span><span
+                    style="color: #f92672">&gt;</span>
+<span style="color: #f8f8f2">String.</span><span style="color: #a6e22e">prototype</span><span
+                    style="color: #f8f8f2">.</span><span style="color: #a6e22e">getQuery</span> <span
+                    style="color: #f92672">=</span> <span style="color: #66d9ef">function</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+　　<span style="color: #a6e22e">varreg</span> <span style="color: #f92672">=</span> <span
+                    style="color: #66d9ef">new</span> <span style="color: #f8f8f2">RegExp(</span><span
+                    style="color: #e6db74">&quot;(^|&amp;)&quot;</span><span style="color: #f92672">+</span> <span
+                    style="color: #a6e22e">name</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot;=([^&amp;]*)(&amp;|$)&quot;</span><span
+                    style="color: #f8f8f2">);</span>
+　　<span style="color: #a6e22e">varr</span> <span style="color: #f92672">=</span> <span
+                    style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">substr</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #66d9ef">this</span><span style="color: #f8f8f2">.</span><span
+                    style="color: #a6e22e">indexOf</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #e6db74">&quot;?&quot;</span><span style="color: #f8f8f2">)</span><span
+                    style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span
+                    style="color: #f8f8f2">).</span><span style="color: #a6e22e">match</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #a6e22e">reg</span><span style="color: #f8f8f2">);</span>
+　　<span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">r</span><span
+                    style="color: #f92672">!=</span><span style="color: #66d9ef">null</span><span
+                    style="color: #f8f8f2">)</span> <span style="color: #66d9ef">return</span> <span
+                    style="color: #a6e22e">unescape</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">r</span><span style="color: #f8f8f2">[</span><span
+                    style="color: #ae81ff">2</span><span style="color: #f8f8f2">]);</span> <span style="color: #66d9ef">return</span> <span
+                    style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">str</span> <span
+                    style="color: #f92672">=</span><span style="color: #e6db74">&quot;www.abc.com/index.htm?a=1&amp;b=1&amp;c=测试测试&quot;</span><span
+                    style="color: #f8f8f2">;</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">str</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getQuery</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;a&quot;</span><span
+                    style="color: #f8f8f2">));</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">str</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getQuery</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;b&quot;</span><span
+                    style="color: #f8f8f2">));</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span
+                    style="color: #a6e22e">str</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getQuery</span><span
+                    style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;c&quot;</span><span
+                    style="color: #f8f8f2">));</span>
+             <span style="color: #f92672">&lt;</span><span style="color: #a6e22e">/script</span><span style="color: #f92672">&gt;</span>
+
+</pre>
+        </div>
+        <p>优点:取值方便,可以跨域.</p>
+        <p>缺点:值长度有限制.</p>
+
+        <h3>二：JavaScript静态页面值传递之Cookie篇</h3>
+        <p>Cookie是浏览器存储少量命名数据，它与某个特定的网页或网站关联在一起。还用来给浏览器提供内存,以便脚本和服务器程序可以在一个页面中使用另一个页面的输入数据</p>
+        <p>参数传出页面Post.htm—></p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">inputtype</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;text&quot;</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;txt1&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">inputtype</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;button&quot;</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Post&quot;</span><span style="color: #f92672">&gt;</span>
+
+<span style="color: #a6e22e">functionsetCookie</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">,</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+<span style="color: #75715e">/*</span>
+<span style="color: #75715e">*---------------setCookie(name,value) -----------------</span>
+<span style="color: #75715e">*setCookie(name,value)</span>
+<span style="color: #75715e">* 功能:设置得变量name的值</span>
+<span style="color: #75715e">* 参数:name,字符串;value,字符串.</span>
+<span style="color: #75715e">* 实例:setCookie(&#39;username&#39;,&#39;baobao&#39;)</span>
+<span style="color: #75715e">*---------------setCookie(name,value) -----------------</span>
+<span style="color: #75715e">*/</span>
+　　<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">Days</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">30</span><span style="color: #f8f8f2">;</span> <span style="color: #75715e">//此 cookie 将被保存 30 天</span>
+　　<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">exp</span>　<span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">Date();</span>
+　　<span style="color: #a6e22e">exp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">setTime</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">exp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">getTime</span><span style="color: #f8f8f2">()</span> <span style="color: #f92672">+</span><span style="color: #a6e22e">Days</span><span style="color: #f92672">*</span><span style="color: #ae81ff">24</span><span style="color: #f92672">*</span><span style="color: #ae81ff">60</span><span style="color: #f92672">*</span><span style="color: #ae81ff">60</span><span style="color: #f92672">*</span><span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">);</span>
+　　<span style="color: #f8f8f2">document.</span><span style="color: #a6e22e">cookie</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">+</span><span style="color: #e6db74">&quot;=&quot;</span><span style="color: #f92672">+</span> <span style="color: #a6e22e">escape</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">)</span> <span style="color: #f92672">+</span> <span style="color: #e6db74">&quot;;expires=&quot;</span> <span style="color: #f92672">+</span> <span style="color: #a6e22e">exp</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">toGMTString</span><span style="color: #f8f8f2">();</span>
+　　<span style="color: #a6e22e">location</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">href</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Read.htm&quot;</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">//接收页面.</span>
+<span style="color: #f8f8f2">}</span>
+
+</pre></div>
+        <p>参数接收页面Read.htm—></p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%">
+<span style="color: #a6e22e">functiongetCookie</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">{</span>
+<span style="color: #75715e">/*</span>
+<span style="color: #75715e">*---------------getCookie(name) -----------------</span>
+<span style="color: #75715e">*getCookie(name)</span>
+<span style="color: #75715e">* 功能:取得变量name的值</span>
+<span style="color: #75715e">* 参数:name,字符串.</span>
+<span style="color: #75715e">* 实例:alert(getCookie(&quot;baobao&quot;));</span>
+<span style="color: #75715e">*---------------getCookie(name) -----------------</span>
+<span style="color: #75715e">*/</span>
+　　<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">arr</span> <span style="color: #f92672">=</span><span style="color: #f8f8f2">document.</span><span style="color: #a6e22e">cookie</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">match</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">new</span> <span style="color: #f8f8f2">RegExp(</span><span style="color: #e6db74">&quot;(^|)&quot;</span><span style="color: #f92672">+</span><span style="color: #a6e22e">name</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot;=([^;]*)(;|$)&quot;</span><span style="color: #f8f8f2">));</span>
+　　<span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">arr</span> <span style="color: #f92672">!=</span><span style="color: #66d9ef">null</span><span style="color: #f8f8f2">)</span> <span style="color: #a6e22e">returnunescape</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">arr</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">]);</span> <span style="color: #66d9ef">return</span> <span style="color: #66d9ef">null</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">getCookie</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;baobao&quot;</span><span style="color: #f8f8f2">));</span>
+
+</pre></div>
+        <p>优点:可以在同源内的任意网页内访问，生命期可以设置。</p>
+        <p>缺点:值长度有限制。</p>
+
+        <h3>三：JavaScript静态页面值传递之Window.open篇</h3>
+        <p>这两窗口之间存在着关系:父窗口parent.htm打开子窗口son.htm</p>
+        <p>子窗口可以通过window.opener指向父窗口，这样可以访问父窗口的对象。</p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #f92672">&lt;</span><span style="color: #a6e22e">inputtype</span><span style="color: #f92672">=</span><span style="color: #a6e22e">text</span> <span style="color: #a6e22e">name</span><span style="color: #f92672">=</span><span style="color: #a6e22e">maintext</span><span style="color: #f92672">&gt;</span>
+<span style="color: #f92672">&lt;</span><span style="color: #a6e22e">inputtype</span><span style="color: #f92672">=</span><span style="color: #a6e22e">button</span> <span style="color: #a6e22e">value</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;Open&quot;</span><span style="color: #f92672">&gt;</span>
+<span style="color: #a6e22e">Read</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">htm</span>
+
+<span style="color: #75715e">//window.open打开的窗口.</span>
+<span style="color: #75715e">//利用opener指向父窗口.</span>
+<span style="color: #a6e22e">varparentText</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">window.</span><span style="color: #a6e22e">opener</span><span style="color: #f8f8f2">.document.</span><span style="color: #a6e22e">all</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">maintext</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">value</span><span style="color: #f8f8f2">;</span>
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">parentText</span><span style="color: #f8f8f2">);</span>
+
+</pre></div>
+        <p>优点:取值方便。只要window.opener指向父窗口，就可以访问所有对象。不仅可以访问值，还可以访问父窗口的方法。值长度无限制。</p>
+        <p>缺点:两窗口要存在着关系，就是利用window.open打开的窗口。不能跨域。</p>
+
+    </section>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+        <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+        <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+        <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>

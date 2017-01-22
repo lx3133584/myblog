@@ -143,6 +143,7 @@ $size-header-pad:		4em;
 		font-size: 0.9em;
 		margin: 0 0 $size-element-margin 0;
 		padding: 1em 1.5em;
+		overflow: scroll;
 
 		code {
 			display: block;
@@ -413,6 +414,7 @@ $size-header-pad:		4em;
 		border: 0;
 		display: inline-block;
 		position: relative;
+		width: 100%;
 		
 		&:before {
 			@include vendor-property('transition', 'opacity #{$duration-transition} ease-in-out');
