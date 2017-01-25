@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>使用_this = this区分作用域</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="使用_this = this区分作用域" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 作用域, 个人, 作品,JS，this，_this" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+<body id="top">
+
+<!-- Header -->
+<header id="header">
+    <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg"/></a>
+    <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br />
+        走在学习的路上，把学到的知识写出来<br />
+        <strong><a href=".."><i class="fa fa-home"></i> BOLG</a></strong></h1>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <h3><a href=".">JavaScript</a></h3>
+
+    <!-- One -->
+    <section id="one">
+        <header class="major">
+            <h2>使用_this = this区分作用域</h2>
+        </header>
+        <p>在看别人的代码的时候看到过好几次有人用到：<code>var _this = this;</code>。在网上找到了这么用的原因，觉得用的很巧妙。</p>
+        <p>下面举一个例子：</p>
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;#btn&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">click</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">_this</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">//这里this和_this都代表了&quot;#btn&quot;这个对象</span>
+    <span style="color: #a6e22e">$</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;.tr&quot;</span><span style="color: #f8f8f2">).</span><span style="color: #a6e22e">each</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
+          <span style="color: #66d9ef">this</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">//在这里this代表的是每个遍历到的&quot;.tr&quot;对象</span>
+          <span style="color: #a6e22e">_this</span><span style="color: #f8f8f2">;</span><span style="color: #75715e">//仍代表&quot;#btn&quot;对象</span>
+    <span style="color: #f8f8f2">})</span>
+<span style="color: #f8f8f2">})</span>
+</pre></div>
+        <p>这种情况就是在一个代码片段里<span style="color: #606060">this</span>有可能代表不同的对象。通过使用 <code>var _this = this;</code> 把最初的对象赋值给<span style="color: #606060">_this</span>。之后就可以使用<span style="color: #606060">_this</span>一直指向最初的对象了。</p>
+
+    </section>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+        <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+        <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+        <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>
