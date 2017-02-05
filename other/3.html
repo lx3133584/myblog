@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>快速理解铁路图（语法图）</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="如何在博客中使用SublimeText风格的代码高亮样式" />
+    <meta name="keywords" content="梁旭, 博客, 前端, 程序员, 铁路图, 语法图" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+<body id="top">
+
+<!-- Header -->
+<header id="header">
+    <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg"/></a>
+    <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br />
+        走在学习的路上，把学到的知识写出来<br />
+        <strong><a href=".."><i class="fa fa-home"></i> BLOG</a></strong></h1>
+</header>
+
+<!-- Main -->
+<div id="main">
+    <h3><a href=".">其它</a></h3>
+
+    <!-- One -->
+    <section id="one">
+        <header class="major">
+            <h2>快速理解铁路图（语法图）</h2>
+        </header>
+        <p>在学习《JavaScript语言精粹》的时候，遇到了一种叫做铁路图的东西，对其百思不得其解。经过查找资料和分析，总结出如下规律。</p>
+        <h3>简介</h3>
+        <p>铁路图（railroad diagram)，又叫语法图(syntax diagrams)，是一种表示形式语法的方式，是巴科斯范式和扩展巴科斯范式的图形化表示。</p>
+        <h3>基本规则</h3>
+        <ul>
+            <li>从左边界开始，沿着轨道到右边界。</li>
+            <li>沿途，你在圆框中遇到的是字面量，在方块中遇到的是规则或描述。</li>
+            <li>任何沿着轨道能走通的序列都是合法的。</li>
+            <li>任何不能沿着轨道走通的序列都是非法的。</li>
+            <li>末端只有一个竖条的铁路图，表示允许在任意一对符号中插入空白。而在末端有两个竖条的铁路图则不允许。</li>
+        </ul>
+        <h3>示例</h3>
+        <p>以javascript的声明变量的语法为例。</p>
+        <img src="img/3-1.png">
+        <h4>则从上到下语法如下：</h4>
+        <p>1、空</p>
+        <p>2、中间横向语句。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;
+        </pre></div>
+        <p>3、从name和=之间绕行。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name; 
+        </pre></div>
+        <p>4、在expression和;之间循环。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name, name,...,name;
+        </pre></div>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression, name <span style="color: #666666">=</span> expression,..., name <span style="color: #666666">=</span> expression;
+        </pre></div>
+        <p>5、在分号之后循环。</p>
+        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;  
+        <span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;  
+        ... 
+        </pre></div>
+        <p>注：圆角向内表示循环，向外则不循环。或者将左下弧理解为出口，右下弧理解为入口。</p>
+        <img src="img/3-2.jpg">
+
+</section>
+
+
+
+
+</div>
+
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+        <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+        <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+        <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+    </ul>
+    <ul class="copyright">
+        <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>
