@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>使用_this = this区分作用域</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="使用_this = this区分作用域" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 作用域, 个人, 作品,JS，this，_this" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+
+<body id="top">
+
+    <!-- Header -->
+    <header id="header">
+        <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg" /></a>
+        <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br /> 走在学习的路上，把学到的知识写出来
+            <br />
+            <strong><a href=".."><i class="fa fa-home"></i> BLOG</a></strong></h1>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        <h3><a href=".">JavaScript</a></h3>
+
+        <!-- One -->
+        <section id="one">
+            <header class="major">
+                <h2>JavaScript中的变量提升</h2>
+            </header>
+            <p>最近在准备面试，看网上的一些面试题，发现了很多自己基础知识不足的地方，其中有一道题很有意思，看似很简单，其实涉及到了JavaScript中作用域和变量提升的问题。</p>
+            <p>这道题是这样的：求下面alter弹出的结果</p>
+            <div class="highlight" style="background: #272822">
+                <pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>  
+        <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">b</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>  
+            <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>  
+            <span style="color: #66d9ef">return</span><span style="color: #f8f8f2">;</span>  
+            <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{}</span>  
+        <span style="color: #f8f8f2">}</span>  
+        <span style="color: #a6e22e">b</span><span style="color: #f8f8f2">();</span>  
+        <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>  
+        </pre>
+            </div>
+            <p>如果是像我一样的初学者肯定以为结果是10吧，然而结果是1。</p>
+            <p>这就是因为JavaScript的变量提升：</p>
+            <p style="color: red;font-weight: bold;">函数声明和变量声明总是会被解释器悄悄地被“提升”到方法体的最顶部。</p>
+            <p>例如：</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>  
+    <span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">();</span>  
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>  
+<span style="color: #f8f8f2">}</span>  
+</pre></div>
+            <p>实际上会被解释成：</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>  
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">x</span><span style="color: #f8f8f2">;</span>  
+    <span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">();</span>  
+    <span style="color: #a6e22e">x</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>  
+<span style="color: #f8f8f2">}</span> 
+</pre></div>
+            <p>请注意，变量赋值并没有被提升，只是声明被提升了。</p>
+            <p>但是，函数的声明有点不一样，函数体也会一同被提升。但是请注意，函数的声明有两种方式：</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">test</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>  
+    <span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// TypeError &quot;foo is not a function&quot;  </span>
+    <span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// &quot;this will run!&quot;  </span>
+    <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">foo</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #75715e">// 变量指向函数表达式  </span>
+        <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;this won&#39;t run!&quot;</span><span style="color: #f8f8f2">);</span>  
+    <span style="color: #f8f8f2">}</span>  
+    <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span> <span style="color: #75715e">// 函数声明 函数名为bar  </span>
+        <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;this will run!&quot;</span><span style="color: #f8f8f2">);</span>  
+    <span style="color: #f8f8f2">}</span>  
+<span style="color: #f8f8f2">}</span>  
+<span style="color: #a6e22e">test</span><span style="color: #f8f8f2">();</span>  
+</pre></div>
+            <p>这个例子里面，只有函数式的声明才会连同函数体一起被提升。foo的声明会被提升，但是它指向的函数体只会在执行的时候才被赋值。</p>
+            <p style="font-weight: bold">还有：函数的声明比变量的声明具有高的优先级。</p>
+            <p>但是函数有一个方法可以解决声明提升的问题，那就是<span style="font-weight: bold;">命名函数</span></p>
+            <p>你可以给一个函数一个名字。如果这样的话，它就不是一个函数声明，同时，函数体定义里面的指定的函数名(如果有的话,如下面的spam)将不会被提升,而是被忽略。</p>
+            <p>这里一些代码帮助你理解：</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// TypeError &quot;foo is not a function&quot;  </span>
+<span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// valid  </span>
+<span style="color: #a6e22e">baz</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// TypeError &quot;baz is not a function&quot;  </span>
+<span style="color: #a6e22e">spam</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// ReferenceError &quot;spam is not defined&quot;  </span>
+  
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">foo</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{};</span> <span style="color: #75715e">// foo指向匿名函数  </span>
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{};</span> <span style="color: #75715e">// 函数声明  </span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">baz</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">spam</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{};</span> <span style="color: #75715e">// 命名函数，只有baz被提升，spam不会被提升。  </span>
+  
+<span style="color: #a6e22e">foo</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// valid  </span>
+<span style="color: #a6e22e">bar</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// valid  </span>
+<span style="color: #a6e22e">baz</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// valid  </span>
+<span style="color: #a6e22e">spam</span><span style="color: #f8f8f2">();</span> <span style="color: #75715e">// ReferenceError &quot;spam is not defined&quot;  </span>
+</pre></div>
+            <p>现在再来看上面的面试题就明白怎么回事了吧，如果还没明白，这里贴上一份代码帮助理解这道题：</p>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #75715e">//代码1：结果是function number 10 1  </span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>      
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">b</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>      
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">typeof</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>      
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">typeof</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #66d9ef">return</span><span style="color: #f8f8f2">;</span>      
+    <span style="color: #66d9ef">function</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{}</span>     
+<span style="color: #f8f8f2">}</span>      
+<span style="color: #a6e22e">b</span><span style="color: #f8f8f2">();</span>      
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>     
+  
+<span style="color: #75715e">//代码2：结果是number number 10 10  </span>
+<span style="color: #66d9ef">var</span> <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span>      
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">b</span><span style="color: #f8f8f2">()</span> <span style="color: #f8f8f2">{</span>      
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">typeof</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #a6e22e">a</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">;</span>      
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">typeof</span> <span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>    
+    <span style="color: #66d9ef">return</span><span style="color: #f8f8f2">;</span>      
+<span style="color: #f8f8f2">}</span>      
+<span style="color: #a6e22e">b</span><span style="color: #f8f8f2">();</span>      
+<span style="color: #a6e22e">alert</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">a</span><span style="color: #f8f8f2">);</span>  
+</pre></div>
+
+
+        </section>
+
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+            <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+            <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+            <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
