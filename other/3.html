@@ -47,20 +47,20 @@
         <h4>则从上到下语法如下：</h4>
         <p>1、空</p>
         <p>2、中间横向语句。</p>
-        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">;</span>
         </pre></div>
         <p>3、从name和=之间绕行。</p>
-        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name; 
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">;</span> 
         </pre></div>
         <p>4、在expression和;之间循环。</p>
-        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name, name,...,name;
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">name</span><span style="color: #f8f8f2">,...,</span><span style="color: #a6e22e">name</span><span style="color: #f8f8f2">;</span>
         </pre></div>
-        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression, name <span style="color: #666666">=</span> expression,..., name <span style="color: #666666">=</span> expression;
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">,...,</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">;</span>
         </pre></div>
         <p>5、在分号之后循环。</p>
-        <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;  
-        <span style="color: #008000; font-weight: bold">var</span> name <span style="color: #666666">=</span> expression;  
-        ... 
+        <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">;</span>  
+        <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">name</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">expression</span><span style="color: #f8f8f2">;</span>  
+        <span style="color: #f8f8f2">...</span> 
         </pre></div>
         <p>注：圆角向内表示循环，向外则不循环。或者将左下弧理解为出口，右下弧理解为入口。</p>
         <img src="img/3-2.jpg">
