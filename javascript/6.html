@@ -34,7 +34,8 @@
             </header>
             <p>在计算机科学所使用的排序算法通常被分类为：</p>
             <ul>
-                <li>计算的<b>时间复杂度</b>（最差、平均、和最好性能），依据列表（list）的大小(n)。一般而言，好的性能是O(n log n)，且坏的性能是O(n^2)。对于一个排序理想的性能是O(n)。仅使用一个抽象关键比较运算的排序算法总平均上总是至少需要O(n log n)。</li>
+                <li>计算的<b>时间复杂度</b>（最差、平均、和最好性能），依据列表（list）的大小(n)。一般而言，好的性能是O(n log n)，且坏的性能是O(n^2)。对于一个排序理想的性能是O(n)。仅使用一个抽象关键比较运算的排序算法总平均上总是至少需要O(n
+                    log n)。</li>
                 <li><b>存储器使用量</b>（以及其他电脑资源的使用）</li>
                 <li><b>稳定性</b>：稳定排序算法会让原本有相等键值的纪录维持相对次序。也就是如果一个排序算法是稳定的，当有两个相等键值的纪录R和S，且在原本的列表中R出现在S之前，在排序过的列表中R也将会是在S之前。</li>
                 <li><b>依据排序的方法</b>：插入、交换、选择、合并等等。</li>
@@ -60,28 +61,32 @@
                 <li>最后得到[1, 2, 3, 4, 5], 排序结束;</li>
             </ol>
             <h5>代码实现:</h5>
-            <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">function</span> swap(items, firstIndex, secondIndex){
-  <span style="color: #008000; font-weight: bold">var</span> temp <span style="color: #666666">=</span> items[firstIndex];
-  items[firstIndex] <span style="color: #666666">=</span> items[secondIndex];
-  items[secondIndex] <span style="color: #666666">=</span> temp;
-};
+            <div class="highlight" style="background: #272822">
+                <pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">swap</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">temp</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">];</span>
+  <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">];</span>
+  <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">temp</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">};</span>
 
-<span style="color: #008000; font-weight: bold">function</span> bubbleSort(items){
-  <span style="color: #008000; font-weight: bold">var</span> len <span style="color: #666666">=</span> items.length, i, j, stop;
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">bubbleSort</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">len</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">stop</span><span style="color: #f8f8f2">;</span>
 
-  <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> len; i<span style="color: #666666">++</span>){
-    <span style="color: #008000; font-weight: bold">for</span> (j <span style="color: #666666">=</span> <span style="color: #666666">0</span>, stop <span style="color: #666666">=</span> len<span style="color: #666666">-</span>i; j <span style="color: #666666">&lt;</span> stop; j<span style="color: #666666">++</span>){
-      <span style="color: #008000; font-weight: bold">if</span> (items[j] <span style="color: #666666">&gt;</span> items[j<span style="color: #666666">+1</span>]){
-        swap(items, j, j<span style="color: #666666">+1</span>);
-      }
-    }
-  }
-  <span style="color: #008000; font-weight: bold">return</span> items;
-}
-</pre></div>
+  <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">len</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">stop</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">len</span><span style="color: #f92672">-</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">stop</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]){</span>
+        <span style="color: #a6e22e">swap</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">);</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">}</span>
+</pre>
+            </div>
             <p>外层的循环决定需要进行多少次遍历, 内层的循环负责数组内各项的比较, 还通过外层循环的次数和数组长度决定何时停止比较.</p>
             <p>冒泡排序极其低效, 因为处理数据的步骤太多, 对于数组中的每n项, 都需要n^2次操作来实现该算法(实际比n^2略小, 但可以忽略, 具体原因见⤵️), 即时间复杂度为O(n^2).</p>
-            <div>对于含有n个元素的数组, 需要进行(n-1)+(n-2)+...+1次操作, 而(n-1)+(n-2)+...+1 = n(n-1)/2 = n^2/2 - n/2, 如果n趋于无限大, 那么n/2的大小对于整个算式的结果影响可以忽略, 因此最终的时间复杂度用O(n^2)表示</div>
+            <div>对于含有n个元素的数组, 需要进行(n-1)+(n-2)+...+1次操作, 而(n-1)+(n-2)+...+1 = n(n-1)/2 = n^2/2 - n/2, 如果n趋于无限大, 那么n/2的大小对于整个算式的结果影响可以忽略,
+                因此最终的时间复杂度用O(n^2)表示
+            </div>
             <h3>选择排序</h3>
             <p>选择排序对一个需要进行排序的数组进行以下操作:</p>
             <ol>
@@ -90,25 +95,97 @@
                 <li>若第二项比第一项小, 则假定第二项为最小值;</li>
                 <li>以此类推直到排序完成.</li>
             </ol>
+            <h5>实例说明:</h5>
+            <p>将数组["b", "a", "d", "c", "e"]以字母a-z的顺序进行排序:</p>
+            <ol>
+                <li>假定数组中第一项"b"(index0)为min;</li>
+                <li>比较第二项"a"与第一项"b", 因"a"应在"b"之前的顺序, 故"a"(index1)为min;</li>
+                <li>然后将min与后面几项比较, 由于"a"就是最小值, 因此min确定在index1的位置;</li>
+                <li>第一次遍历结束后, 将假定的min(index0), 与真实的min(index1)进行比较, 真实的min应该在index0的位置, 因此将两者交换, 第一次遍历交换之后的结果为["a", "b", "d", "c", "e"];</li>
+                <li>然后开始第二次遍历, 遍历从第二项(index1的位置)开始, 这次假定第二项为最小值, 将第二项与之后几项逐个比较, 因为"b"就在应该存在的位置, 所以不需要进行交换, 这次遍历之后的结果为"a", "b", "d", "c", "e"];</li>
+                <li>之后开始第三次遍历, "c"应为这次遍历的最小值, 交换index2("d"), index3("c")位置, 最后结果为["a", "b", "c", "d", "e"];</li>
+                <li>最后一次遍历, 所有元素在应有位置, 不需要进行交换.</li>
+            </ol>
+            <h5>代码实现:</h5>
+            <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">swap</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">){</span>
+  <span style="color: #66d9ef">var</span> <span style="color: #a6e22e">temp</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">];</span>
+  <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">firstIndex</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">];</span>
+  <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">secondIndex</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">temp</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">};</span>
+
+<span style="color: #66d9ef">function</span> <span style="color: #a6e22e">selectionSort</span><span style="color: #f8f8f2">(){</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">items</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[...document.</span><span style="color: #a6e22e">querySelectorAll</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;.num-queue span&#39;</span><span style="color: #f8f8f2">)].</span><span style="color: #a6e22e">map</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">num</span> <span style="color: #f92672">=&gt;</span> <span style="color: #f92672">+</span><span style="color: #a6e22e">num</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">textContent</span><span style="color: #f8f8f2">);</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">len</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">min</span><span style="color: #f8f8f2">;</span>
+
+  <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">len</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+    <span style="color: #a6e22e">min</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">;</span>
+    <span style="color: #66d9ef">for</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">len</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">min</span><span style="color: #f8f8f2">]){</span>
+        <span style="color: #a6e22e">min</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">j</span><span style="color: #f8f8f2">;</span>
+      <span style="color: #f8f8f2">}</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #66d9ef">if</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">!=</span> <span style="color: #a6e22e">min</span><span style="color: #f8f8f2">){</span>
+      <span style="color: #a6e22e">swap</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">min</span><span style="color: #f8f8f2">);</span>
+    <span style="color: #f8f8f2">}</span>
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">};</span>
+</pre></div>
+<p>外层循环决定每次遍历的初始位置, 从数组的第一项开始直到最后一项. 内层循环决定哪一项元素被比较.</p>
+<p>选择排序的时间复杂度为O(n^2).</p>
+<h3>插入排序</h3>
+<p>与上述两种排序算法不同, 插入排序是稳定排序算法(stable sort algorithm), 稳定排序算法指不改变列表中相同元素的位置, 冒泡排序和选择排序不是稳定排序算法, 因为排序过程中有可能会改变相同元素位置. 对简单的值(数字或字符串)排序时, 相同元素位置改变与否影响不是很大. 而当列表中的元素是对象, 根据对象的某个属性对列表进行排序时, 使用稳定排序算法就很有必要了.</p>
+<p>一旦算法包含交换(swap)这个步骤, 就不可能是稳定的排序算法. 列表内元素不断交换, 无法保证先前的元素排列为止一直保持原样. 而插入排序的实现过程不包含交换, 而是提取某个元素将其插入数组中正确位置.</p>
+<p>插入排序的实现是将一个数组分为两个部分, 一部分排序完成, 一部分未进行排序. 初始状态下整个数组属于未排序部分, 排序完成部分为空. 然后进行排序, 数组内的第一项被加入排序完成部分, 由于只有一项, 自然属于排序完成状态. 然后对未完成排序的余下部分的元素进行如下操作:</p>
+<ol>
+    <li>如果这一项的值应该在排序完成部分最后一项元素之后, 保留这一项在原有位置开始下一步;</li>
+    <li>如果这一项的值应该排在排序完成部分最后一项元素之前, 将这一项从未完成部分暂时移开, 将已完成部分的最后一项元素移后一个位置;</li>
+    <li>被暂时移开的元素与已完成部分倒数第二项元素进行比较;</li>
+    <li>如果被移除元素的值在最后一项与倒数第二项的值之间, 那么将其插入两者之间的位置, 否则继续与前面的元素比较, 将暂移出的元素放置已完成部分合适位置. 以此类推直到所有元素都被移至排序完成部分.</li>
+</ol>
+<h5>实例说明:</h5>
+<p>现在需要将数组var items = [5, 2, 6, 1, 3, 9];进行插入排序:</p>
+<ol>
+    <li>5属于已完成部分, 余下元素为未完成部分. 接下来提取出2, 因为5比2大, 于是5被移至靠右一个位置, 覆盖2, 占用2原本存在的位置. 这样本来存放5的位置(已完成部分的首个位置)就被空出, 而2在比5小, 因此将2置于这个位置, 此时结果为[2, 5, 6, 1, 3, 9];</li>
+    <li>接下来提取出6, 因为6比5大, 所以不操作提取出1, 1与已完成部分各个元素(2, 5, 6)进行比较, 应该在2之前, 因此2, 5, 6各向右移一位, 1置于已完成部分首位, 此时结果为[1, 2, 5, 6, 3, 9];</li>
+    <li>对余下未完成元素进行类似操作, 最后得出结果[1, 2, 3, 5, 6, 9];</li>
+</ol>
+<h5>代码实现:</h5>
+<div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #66d9ef">function</span> <span style="color: #a6e22e">insertionSort</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">items</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+  <span style="color: #66d9ef">let</span> <span style="color: #a6e22e">len</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">length</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">value</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">i</span><span style="color: #f8f8f2">,</span> <span style="color: #a6e22e">j</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">i</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span> <span style="color: #f92672">&lt;</span> <span style="color: #a6e22e">len</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">++</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+    <span style="color: #a6e22e">value</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">i</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">(</span><span style="color: #a6e22e">j</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">i</span><span style="color: #f92672">-</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span> <span style="color: #f92672">&gt;</span> <span style="color: #f92672">-</span><span style="color: #ae81ff">1</span> <span style="color: #f92672">&amp;&amp;</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">&gt;</span> <span style="color: #a6e22e">value</span><span style="color: #f8f8f2">;</span> <span style="color: #a6e22e">j</span><span style="color: #f92672">--</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">{</span>
+      <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f8f8f2">];</span>
+    <span style="color: #f8f8f2">}</span>
+    <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">[</span><span style="color: #a6e22e">j</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">value</span><span style="color: #f8f8f2">;</span>
+  <span style="color: #f8f8f2">}</span>
+  <span style="color: #66d9ef">return</span> <span style="color: #a6e22e">items</span><span style="color: #f8f8f2">;</span>
+<span style="color: #f8f8f2">};</span>
+</pre></div>
+<p>外层循环的遍历顺序是从数组的第一位到最后一位, 内层循环的遍历则是从后往前, 内层循环同时负责元素的移位.</p>
+<p>插入排序的时间复杂度为O(n^2)</p>
+<p><b>以上三种排序算法都十分低效, 因此实际应用中不要使用这三种算法, 遇到需要排序的问题, 应该首先使用JavaScript内置的方法Array.prototype.sort();</b></p>
+
 
 
         </section>
         <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="0204" data-title="JavaScript中的变量提升" data-url="/blog/javascript/4.html"></div>	
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"myliangxu"};
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-            ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0] 
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
-        })();
-    </script>
-    <!-- 多说公共JS代码 end -->
+        <div class="ds-thread" data-thread-key="0204" data-title="JavaScript中的变量提升" data-url="/blog/javascript/4.html"></div>
+        <!-- 多说评论框 end -->
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+            var duoshuoQuery = { short_name: "myliangxu" };
+            (function () {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript'; ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        </script>
+        <!-- 多说公共JS代码 end -->
 
 
 
@@ -120,7 +197,9 @@
     <footer id="footer">
         <ul class="icons">
             <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
-            <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+            <li>
+                <a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a>
+            </li>
             <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
             <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
         </ul>
