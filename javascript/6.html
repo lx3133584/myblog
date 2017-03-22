@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>三种基础的排序算法</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="JavaScript中的变量提升" />
+    <meta name="keywords" content="梁旭,博客, 前端, 程序员, 算法, 排序" />
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery.poptrox.min.js"></script>
+    <script src="../js/skel.min.js"></script>
+    <script src="init.js"></script>
+</head>
+
+<body id="top">
+
+    <!-- Header -->
+    <header id="header">
+        <a href="http://www.myliangxu.cn/" class="image avatar"><img src="../img/photo.jpg" /></a>
+        <h1>我是 <strong><a href="http://www.myliangxu.cn/">梁旭</a></strong> , 一个前端菜鸟.<br /> 走在学习的路上，把学到的知识写出来
+            <br />
+            <strong><a href=".."><i class="fa fa-home"></i> BLOG</a></strong></h1>
+    </header>
+
+    <!-- Main -->
+    <div id="main">
+        <h3><a href=".">JavaScript</a></h3>
+
+        <!-- One -->
+        <section id="one">
+            <header class="major">
+                <h2>三种基础的排序算法</h2>
+            </header>
+            <p>在计算机科学所使用的排序算法通常被分类为：</p>
+            <ul>
+                <li>计算的<b>时间复杂度</b>（最差、平均、和最好性能），依据列表（list）的大小(n)。一般而言，好的性能是O(n log n)，且坏的性能是O(n^2)。对于一个排序理想的性能是O(n)。仅使用一个抽象关键比较运算的排序算法总平均上总是至少需要O(n log n)。</li>
+                <li><b>存储器使用量</b>（以及其他电脑资源的使用）</li>
+                <li><b>稳定性</b>：稳定排序算法会让原本有相等键值的纪录维持相对次序。也就是如果一个排序算法是稳定的，当有两个相等键值的纪录R和S，且在原本的列表中R出现在S之前，在排序过的列表中R也将会是在S之前。</li>
+                <li><b>依据排序的方法</b>：插入、交换、选择、合并等等。</li>
+            </ul>
+            <p>依据排序的方法分类的三种排序算法:</p>
+            <h3>冒泡排序</h3>
+            <p>冒泡排序对一个需要进行排序的数组进行以下操作:</p>
+            <ol>
+                <li>比较第一项和第二项;</li>
+                <li>如果第一项应该排在第二项之后, 那么两者交换顺序;</li>
+                <li>比较第二项和第三项;</li>
+                <li>如果第二项应该排在第三项之后, 那么两者交换顺序;</li>
+                <li>以此类推直到完成排序;</li>
+            </ol>
+            <h5>实例说明:</h5>
+            <p>将数组[3, 2, 4, 5, 1]以从小到大的顺序进行排序:</p>
+            <ol>
+                <li>3应该在2之后, 因此交换, 得到[2, 3, 4, 5, 1];</li>
+                <li>3, 4顺序不变, 4, 5也不变, 交换5, 1得到[2, 3, 4, 1, 5];</li>
+                <li>第一次遍历结束, 数组中最后一项处于正确位置不会再有变化, 因此下一次遍历可以排除最后一项;</li>
+                <li>开始第二次遍历, 最后结果为[2, 3, 1, 4, 5], 排除后两项进行下一次遍历;</li>
+                <li>第三次遍历结果为[2, 1, 3, 4, 5];</li>
+                <li>最后得到[1, 2, 3, 4, 5], 排序结束;</li>
+            </ol>
+            <h5>代码实现:</h5>
+            <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">function</span> swap(items, firstIndex, secondIndex){
+  <span style="color: #008000; font-weight: bold">var</span> temp <span style="color: #666666">=</span> items[firstIndex];
+  items[firstIndex] <span style="color: #666666">=</span> items[secondIndex];
+  items[secondIndex] <span style="color: #666666">=</span> temp;
+};
+
+<span style="color: #008000; font-weight: bold">function</span> bubbleSort(items){
+  <span style="color: #008000; font-weight: bold">var</span> len <span style="color: #666666">=</span> items.length, i, j, stop;
+
+  <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> len; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (j <span style="color: #666666">=</span> <span style="color: #666666">0</span>, stop <span style="color: #666666">=</span> len<span style="color: #666666">-</span>i; j <span style="color: #666666">&lt;</span> stop; j<span style="color: #666666">++</span>){
+      <span style="color: #008000; font-weight: bold">if</span> (items[j] <span style="color: #666666">&gt;</span> items[j<span style="color: #666666">+1</span>]){
+        swap(items, j, j<span style="color: #666666">+1</span>);
+      }
+    }
+  }
+  <span style="color: #008000; font-weight: bold">return</span> items;
+}
+</pre></div>
+            <p>外层的循环决定需要进行多少次遍历, 内层的循环负责数组内各项的比较, 还通过外层循环的次数和数组长度决定何时停止比较.</p>
+            <p>冒泡排序极其低效, 因为处理数据的步骤太多, 对于数组中的每n项, 都需要n^2次操作来实现该算法(实际比n^2略小, 但可以忽略, 具体原因见⤵️), 即时间复杂度为O(n^2).</p>
+            <div>对于含有n个元素的数组, 需要进行(n-1)+(n-2)+...+1次操作, 而(n-1)+(n-2)+...+1 = n(n-1)/2 = n^2/2 - n/2, 如果n趋于无限大, 那么n/2的大小对于整个算式的结果影响可以忽略, 因此最终的时间复杂度用O(n^2)表示</div>
+            <h3>选择排序</h3>
+            <p>选择排序对一个需要进行排序的数组进行以下操作:</p>
+            <ol>
+                <li>假定数组中的第一项为最小值(min);</li>
+                <li>比较第一项和第二项的值;</li>
+                <li>若第二项比第一项小, 则假定第二项为最小值;</li>
+                <li>以此类推直到排序完成.</li>
+            </ol>
+
+
+        </section>
+        <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="0204" data-title="JavaScript中的变量提升" data-url="/blog/javascript/4.html"></div>	
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:"myliangxu"};
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+            || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共JS代码 end -->
+
+
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a target="_blank" href="../img/weixin.png"><i class="icon fa-weixin"></i></a></li>
+            <li><a target="_blank" href="http://sighttp.qq.com/authd?IDKEY=ad9f4bb6d491cb8a1a45d2810f1d27c0ae03f775c0281130"><i class="icon fa-qq"></i></a></li>
+            <li><a target="_blank" href="http://weibo.com/u/3178976734?refer_flag=1001030101_&is_all=1"><i class="icon fa-weibo"></i></a></li>
+            <li><a target="_blank" href="https://github.com/lx3133584"><i class="icon fa-github"></i></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>Copyright © 2016 LiangXu All rights reserved | <a href="http://www.miitbeian.gov.cn/">冀ICP备17002381号</a></li>
+        </ul>
+    </footer>
+
+</body>
+
+</html>
