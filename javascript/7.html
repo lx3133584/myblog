@@ -216,7 +216,7 @@
 <span style="color: #f92672">&lt;/body&gt;</span>
 <span style="color: #f92672">&lt;/html&gt;</span>
 </pre></div>
-<p>注：在完成代码过程中出现一个小tips：showWay函数内设置延时器后读取不出arr的值，注意使用以下格式：</p>
+<p>注：在完成代码过程中出现一个小tips：showWay函数内设置延时器后，回调函数异步运行，读取不出arr的值，可以使用闭包传递参数，以下为代码：</p>
 <div class="highlight" style="background: #272822"><pre style="line-height: 125%"><span style="color: #a6e22e">setTimeout</span><span style="color: #f8f8f2">(</span><span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(</span><span style="color: #a6e22e">arguments</span><span style="color: #f8f8f2">){</span>
 	<span style="color: #66d9ef">return</span> <span style="color: #66d9ef">function</span><span style="color: #f8f8f2">(){</span>
 		<span style="color: #75715e">//需要运行的代码</span>
